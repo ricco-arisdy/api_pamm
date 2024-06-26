@@ -1,7 +1,6 @@
 <?php
 // Sambungkan ke database
 $connect = new mysqli("localhost", "root", "Ricco18", "uji_pam", 3306);
-
 // Periksa koneksi
 if ($connect->connect_error) {
     die("Connection failed: " . $connect->connect_error);
@@ -19,12 +18,12 @@ if ($result->num_rows > 0) {
     // Jika pengguna ditemukan, periksa kata sandi
     $user = $result->fetch_assoc();
     if (password_verify($password, $user['password'])) {
-        // Jika kata sandi cocok, kirimkan respons berhasil
+        // Jika kata sandi cocok, kirimkan respons berhasil dengan user_id dan username
         echo json_encode(array(
             "status" => "success",
-            "message" => "Login berhasil",
-            "username" => $user['username'],  // Ambil username dari hasil query
-            "email" => $user['email'],
+            "user_id" => $user['id'],
+            "username" => $user['username'], // Tambahkan username di sini
+            "message" => "Login berhasil"
         ));
     } else {
         // Jika kata sandi tidak cocok, kirimkan respons gagal

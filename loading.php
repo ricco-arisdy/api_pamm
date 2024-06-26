@@ -1,7 +1,6 @@
 <?php
 // Sambungkan ke database
-$connect = new mysqli("localhost", "root", "Ricco18", "uji_", 3307);
-
+$connect = new mysqli("localhost", "root", "Ricco18", "uji_pam", 3306);
 // Periksa koneksi
 if ($connect->connect_error) {
     die(json_encode(array("status" => "error", "message" => "Connection failed: " . $connect->connect_error)));
