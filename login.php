@@ -22,7 +22,8 @@ if ($result->num_rows > 0) {
         echo json_encode(array(
             "status" => "success",
             "user_id" => $user['id'],
-            "username" => $user['username'], // Tambahkan username di sini
+            "username" => $user['username'],
+            "tanggalBergabung" => $user['created_at'],
             "message" => "Login berhasil"
         ));
     } else {
