@@ -9,14 +9,14 @@ if ($connect->connect_error) {
 
 // Check if HTTP method is DELETE
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    // Ambil data JSON dari body request
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+
     // Check if ID parameter exists
-    parse_str(file_get_contents("php://input"), $delete_vars);
-    $id = isset($delete_vars['id']) ? intval($delete_vars['id']) : null;
+    $id = isset($data['id']) ? intval($data['id']) : null;
 
     if (!empty($id)) {
-        // Sanitize the ID input (optional but recommended)
-        // $id = mysqli_real_escape_string($connect, $id);
-
         // SQL query to delete lahan by ID
         $query = "DELETE FROM lahan WHERE id = $id";
 
